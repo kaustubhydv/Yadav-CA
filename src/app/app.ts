@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -9,4 +10,11 @@ import { RouterOutlet } from '@angular/router';
 })
 export class App {
   protected title = 'yadav-ca';
+  constructor(private router: Router) {
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(() => {
+        window.scrollTo({ top: 0 });
+      });
+  }
 }
