@@ -1,116 +1,187 @@
 <!-- Navbar -->
-<header
-  class="sticky top-0 z-50 bg-white shadow py-4 px-6 md:px-20 flex justify-between items-center"
->
-  <div class="text-2xl font-bold text-[#0E002D]">Motoride</div>
-  <nav class="space-x-6 hidden md:block">
-    <a href="/about" class="text-gray-700 hover:text-[#e53b3b] transition"
-      >About</a
-    >
-    <a href="#events" class="text-gray-700 hover:text-[#e53b3b] transition"
-      >Events</a
-    >
-    <a href="#community" class="text-gray-700 hover:text-[#e53b3b] transition"
-      >Community</a
-    >
-  </nav>
-  <button
-    class="bg-[#e53b3b] text-white px-4 py-2 rounded-full hover:bg-red-600 transition"
-  >
-    Join Now
-  </button>
-</header>
-
-<!-- Mission Section -->
-<section class="px-6 md:px-20 py-20 bg-white text-center">
-  <h2 class="text-4xl font-bold mb-4">Our Mission</h2>
-  <p class="text-lg text-gray-700 max-w-3xl mx-auto">
-    To foster unity, cultural heritage, and community support for Yadavs living
-    in Canada. We aim to help new immigrants integrate, connect generations, and
-    celebrate our shared values through events, support, and active engagement.
-  </p>
-</section>
+<app-navbar
+  [showModal]="showModal"
+  (modalStatusEmit)="modalStatus($event)"
+></app-navbar>
 
 <!-- Executive Committee Section -->
-<section class="bg-gray-100 px-6 md:px-20 py-20">
-  <h2 class="text-4xl font-bold text-center mb-12">Executive Committee</h2>
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-    <div class="flex items-center space-x-4">
+<section
+  class="bg-[#0E002D] px-6 md:px-20 py-6 md:py-20 inset-0 bg-gradient-to-l from-[#e53b3b]/30 via-[#e53b3b]/10 to-transparent z-0"
+>
+  <h2 class="text-4xl text-[#e53b3b] font-bold text-center mb-16">
+    Executive Committee
+  </h2>
+
+  <div class="space-y-16">
+    <!-- Tile 1 -->
+    <div class="flex flex-col md:flex-row items-center md:items-start gap-10">
       <img
-        src="assets/prof-shashi.jpg"
+        src="assets/shashi-kant.jpeg"
         alt="Prof. Shashi Kant"
-        class="w-20 h-20 object-cover rounded-full"
+        class="w-full md:w-1/3 aspect-square rounded-2xl object-cover shadow-xl"
       />
-      <div>
-        <h3 class="font-semibold text-lg">Prof. Shashi Kant</h3>
-        <p class="text-sm text-gray-500">Chairman</p>
+      <div class="flex-1 text-white">
+        <h3 class="text-2xl font-bold mb-2">Prof. Shashi Kant</h3>
+        <p class="text-[#e53b3b] font-medium mb-4">Chairman</p>
+        <p class="text-white/80 leading-relaxed">
+          Prof. Shashi Kant is a professor of forest resource economics and
+          sustainability management at the University of Toronto. He founded and
+          directed the MScSM Program and leads global research through the New
+          Frontiers of Forest Economics think tank. With extensive publications
+          and editorial roles, he’s a recipient of honors like the Order of
+          Ontario and the Queen’s Award for Forestry. He holds degrees from BITS
+          Pilani and the University of Toronto.
+        </p>
       </div>
     </div>
-    <div class="flex items-center space-x-4">
+
+    <!-- Tile 2 (Image Right) -->
+    <div
+      class="flex flex-col md:flex-row-reverse items-center md:items-start gap-10"
+    >
       <img
-        src="assets/prof-satyendra.jpg"
+        src="assets/satyendra-narayan.jpeg"
         alt="Prof. Satyendra Narayan Yadav"
-        class="w-20 h-20 object-cover rounded-full"
+        class="w-full md:w-1/3 aspect-square rounded-2xl object-cover shadow-xl"
       />
-      <div>
-        <h3 class="font-semibold text-lg">Prof. Satyendra Narayan Yadav</h3>
-        <p class="text-sm text-gray-500">President</p>
+      <div class="flex-1 text-white">
+        <h3 class="text-2xl font-bold mb-2">Prof. Satyendra Narayan Yadav</h3>
+        <p class="text-[#e53b3b] font-medium mb-4">President</p>
+        <p class="text-white/80 leading-relaxed">
+          Prof. Satyendra Narayan Yadav is a professor of applied computing at
+          Sheridan since 1999. He holds a PhD from the University of Waterloo
+          and a master’s from the University of California. With over 35 years
+          of teaching and research in computing, geosciences, and
+          geo-engineering, he has published widely and contributed to national
+          and UNDP-funded projects.
+        </p>
       </div>
     </div>
-    <div class="flex items-center space-x-4">
+
+    <!-- Tile 3 -->
+    <div class="flex flex-col md:flex-row items-center md:items-start gap-10">
       <img
-        src="assets/manju.jpg"
+        src="assets/manju.jpeg"
         alt="Manju Yadav"
-        class="w-20 h-20 object-cover rounded-full"
+        class="w-full md:w-1/3 aspect-square rounded-2xl object-cover shadow-xl"
       />
-      <div>
-        <h3 class="font-semibold text-lg">Manju Yadav</h3>
-        <p class="text-sm text-gray-500">VP - Cultural & Family Engagements</p>
+      <div class="flex-1 text-white">
+        <h3 class="text-2xl font-bold mb-2">Manju Yadav</h3>
+        <p class="text-[#e53b3b] font-medium mb-4">
+          VP - Cultural & Family Engagements
+        </p>
+        <p class="text-white/80 leading-relaxed">
+          Manju is originally from Gurgaon, Haryana, and moved to Canada in 2014
+          to pursue new professional and personal opportunities. She currently
+          works at TD Insurance, building a successful career in the industry.
+          Since 2016, Manju has been an active member of the Yadav Association
+          of Canada, contributing to community initiatives that promote unity
+          and cultural heritage. She strongly values staying connected to her
+          roots while giving back to the community.
+        </p>
       </div>
     </div>
-    <div class="flex items-center space-x-4">
+
+    <!-- Tile 4 (Image Right) -->
+    <div
+      class="flex flex-col md:flex-row-reverse items-center md:items-start gap-10"
+    >
       <img
-        src="assets/manish.jpg"
+        src="assets/manish-yadav.jpeg"
         alt="Manish Yadav"
-        class="w-20 h-20 object-cover rounded-full"
+        class="w-full md:w-1/3 aspect-square rounded-2xl object-cover shadow-xl"
       />
-      <div>
-        <h3 class="font-semibold text-lg">Manish Yadav</h3>
-        <p class="text-sm text-gray-500">VP - Youth Development</p>
+      <div class="flex-1 text-white">
+        <h3 class="text-2xl font-bold mb-2">Manish Yadav</h3>
+        <p class="text-[#e53b3b] font-medium mb-4">VP - Youth Development</p>
+        <p class="text-white/80 leading-relaxed">
+          Manish Kumar Yadav is a seasoned professional serving as Country Head
+          (Canada) and Vice President of AI & Business Development at Xforia
+          Technologies Inc. A permanent Canadian resident based in Toronto, he
+          holds an MCA (Honors) and an MBA in Human Resources. He is a PhD
+          Scholar in AI & HR.
+        </p>
       </div>
     </div>
-    <div class="flex items-center space-x-4">
+
+    <!-- Tile 3 -->
+    <div class="flex flex-col md:flex-row items-center md:items-start gap-10">
       <img
-        src="assets/vardhman.jpg"
-        alt="Vardhman Yadav"
-        class="w-20 h-20 object-cover rounded-full"
-      />
-      <div>
-        <h3 class="font-semibold text-lg">Vardhman Yadav</h3>
-        <p class="text-sm text-gray-500">General Secretary</p>
-      </div>
-    </div>
-    <div class="flex items-center space-x-4">
-      <img
-        src="assets/hemant.jpg"
-        alt="Hemant Yadav"
-        class="w-20 h-20 object-cover rounded-full"
-      />
-      <div>
-        <h3 class="font-semibold text-lg">Hemant Yadav</h3>
-        <p class="text-sm text-gray-500">Joint Secretary</p>
-      </div>
-    </div>
-    <div class="flex items-center space-x-4">
-      <img
-        src="assets/kishor.jpg"
+        src="assets/kishor-yadav.jpeg"
         alt="Kishor Yadav"
-        class="w-20 h-20 object-cover rounded-full"
+        class="w-full md:w-1/3 aspect-square rounded-2xl object-cover shadow-xl"
       />
-      <div>
-        <h3 class="font-semibold text-lg">Kishor Yadav</h3>
-        <p class="text-sm text-gray-500">Treasurer & CFO</p>
+      <div class="flex-1 text-white">
+        <h3 class="text-2xl font-bold mb-2">Kishor Yadav</h3>
+        <p class="text-[#e53b3b] font-medium mb-4">Treasured & CFO</p>
+        <p class="text-white/80 leading-relaxed">
+          Kishor Yadav, CPA (Canada & USA), CGA, ACCA (UK), MBA, LLB, M.Com,
+          B.Com Kishor Yadav is a highly qualified and internationally
+          designated accounting professional with CPA credentials in both Canada
+          and the U.S., as well as CGA and ACCA (UK) certifications. He also
+          holds advanced academic degrees in business, law, and commerce,
+          including an MBA, LLB, M.Com, and B.Com. Currently, Kishor is engaged
+          in the administration of hedge funds, where he applies his expertise
+          in financial operations, regulatory compliance, and global accounting
+          standards.
+        </p>
       </div>
     </div>
+
+    <!-- Tile 4 (Image Right) -->
+    <div
+      class="flex flex-col md:flex-row-reverse items-center md:items-start gap-10"
+    >
+      <img
+        src="assets/hemant.jpeg"
+        alt="Hemant Yadav"
+        class="w-full md:w-1/3 aspect-square rounded-2xl object-cover shadow-xl"
+      />
+      <div class="flex-1 text-white">
+        <h3 class="text-2xl font-bold mb-2">Hemant Yadav</h3>
+        <p class="text-[#e53b3b] font-medium mb-4">Joint Secretary</p>
+        <p class="text-white/80 leading-relaxed">
+          Hemant Yadav is a seasoned IT leader with over 25 years of experience
+          in program management, digital transformation, and financial
+          technology across India and Canada. Since moving to Canada in 2014, he
+          has led major initiatives in top banks, known for aligning tech
+          strategy with business goals. Originally from Kanpur, he actively
+          contributes to the Yadav Canada Association, promoting mentorship,
+          cultural pride, and community empowerment. Hemant blends professional
+          excellence with a strong commitment to service and leadership.
+        </p>
+      </div>
+    </div>
+    <!-- Tile 3 -->
+    <div class="flex flex-col md:flex-row items-center md:items-start gap-10">
+      <img
+        src="assets/vardhman.jpeg"
+        alt="Vardhamn Yadav"
+        class="w-full md:w-1/3 aspect-square rounded-2xl object-cover shadow-xl"
+      />
+      <div class="flex-1 text-white">
+        <h3 class="text-2xl font-bold mb-2">Vardhaman Yadav</h3>
+        <p class="text-[#e53b3b] font-medium mb-4">General Secretary</p>
+        <p class="text-white/80 leading-relaxed">
+          Vardhman Yadav is a senior IT professional with a strong academic
+          foundation and over a decade of global experience in the technology
+          sector. Originally from Jhansi, Uttar Pradesh, he completed his
+          schooling at Jawahar Navodaya Vidyalaya, known for nurturing talent
+          from rural India. He went on to earn a Master’s in Computer
+          Applications (MCA), which laid the groundwork for his successful
+          career in IT. Over the years, Vardhman has lived and worked in various
+          parts of the world, gaining diverse professional and cultural
+          insights, and is currently based in the Toronto area, where he
+          continues to contribute his expertise to the tech industry.
+        </p>
+      </div>
+    </div>
+
+    <!-- Continue for other members -->
   </div>
 </section>
+
+<!-- Footer -->
+<footer class="bg-[#0E002D] text-white py-10 text-center">
+  <p>&copy; 2025 YAOC Community. All rights reserved.</p>
+</footer>

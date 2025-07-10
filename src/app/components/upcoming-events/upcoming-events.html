@@ -1,0 +1,53 @@
+<section class="px-6 md:px-20 py-16">
+  <h2 class="text-3xl font-bold mb-6">Upcoming Events</h2>
+  <ng-container *ngIf="!isLoading; else loading">
+    <div *ngIf="events.length > 0; else empty">
+      <!--  Render Event Cards -->
+      <div class="grid gap-6 md:grid-cols-3">
+        <div
+          *ngFor="let event of events"
+          class="group relative bg-[#0E002D] text-white p-6 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300"
+        >
+          <!-- Glowing Border -->
+          <div
+            class="absolute -inset-[2px] z-0 rounded-2xl bg-gradient-to-br from-[#e53b3b] via-white/10 to-[#0E002D] opacity-30 blur-sm group-hover:opacity-50 transition-all duration-300"
+          ></div>
+
+          <div class="relative z-10 flex flex-col gap-4">
+            <img
+              [src]="event?.ImageURL"
+              [alt]="event?.Title"
+              class="rounded-xl aspect-square max-w-80 object-cover transition"
+            />
+            <h3 class="text-xl font-bold tracking-wide">{{ event?.Title }}</h3>
+            <p class="text-white/80 text-sm">{{ event?.Description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--  Empty State -->
+    <ng-template #empty>
+      <div class="flex flex-col gap-4 justify-center items-center">
+        <img src="assets/empty-state.gif" />
+        <h1 class="text-xl text-[#e53b3b] font-bold">
+          Currently No Event is Scheduled!
+        </h1>
+      </div>
+    </ng-template>
+  </ng-container>
+
+  <!--  Skeleton Loader -->
+  <ng-template #loading>
+    <div class="grid gap-6 md:grid-cols-3">
+      <div
+        *ngFor="let skel of [1, 2, 3]"
+        class="animate-pulse p-6 rounded-2xl bg-[#0E002D] shadow-xl"
+      >
+        <div class="h-48 bg-gray-700/40 rounded-xl mb-4"></div>
+        <div class="h-5 bg-gray-600/50 rounded w-3/4 mb-2"></div>
+        <div class="h-4 bg-gray-600/30 rounded w-5/6 mb-4"></div>
+      </div>
+    </div>
+  </ng-template>
+</section>

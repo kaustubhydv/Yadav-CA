@@ -1,214 +1,135 @@
 <!-- Navbar -->
-<header
-  class="sticky top-0 z-50 bg-white shadow py-4 px-6 md:px-20 flex justify-between items-center"
->
-  <div class="text-2xl font-bold text-[#0E002D]">Motoride</div>
-  <nav class="space-x-6 hidden md:block">
-    <a href="/about" class="text-gray-700 hover:text-[#e53b3b] transition"
-      >About</a
-    >
-    <a
-      href="/event-gallery"
-      class="text-gray-700 hover:text-[#e53b3b] transition"
-      >Events</a
-    >
-    <a href="#community" class="text-gray-700 hover:text-[#e53b3b] transition"
-      >Community</a
-    >
-  </nav>
-  <button
-    class="bg-[#e53b3b] text-white px-4 py-2 rounded-full hover:bg-red-600 transition"
-  >
-    Join Now
-  </button>
-</header>
+<app-navbar
+  [showModal]="showModal"
+  (modalStatusEmit)="modalStatus($event)"
+></app-navbar>
 
 <!-- Hero Section -->
 <section
-  class="bg-[#0E002D] text-white px-6 md:px-20 py-20 flex flex-col md:flex-row items-center justify-between"
+  class="relative bg-[#0E002D] text-white px-6 md:px-20 py-20 flex flex-col lg:flex-row lg:items-center lg:justify-between overflow-hidden"
 >
-  <div class="max-w-xl space-y-6">
-    <h1 class="text-5xl md:text-6xl font-bold leading-tight">
-      Ride Together, <span class="text-[#e53b3b]">Live Free</span>
+  <!-- Red gradient background -->
+  <div
+    class="absolute inset-0 bg-gradient-to-l from-[#e53b3b]/30 via-[#e53b3b]/10 to-transparent z-0"
+  ></div>
+
+  <!-- Content -->
+  <div class="relative z-10 w-full lg:w-2/3">
+    <h1 class="text-lg lg:text-xl font-bold leading-tight mb-3">
+      Welcome to
+      <span class="text-[#e53b3b]">Yadav Association of Canada</span>
     </h1>
-    <p class="text-lg text-gray-300">
-      Join the fastest growing motorcycle community. Explore new roads, meet
-      passionate riders, and live the thrill.
+    <h1 class="text-3xl lg:text-5xl font-bold leading-tight mb-6">
+      Culture & Community,
+      <span class="text-[#e53b3b]">Across Generations</span>
+    </h1>
+    <p class="text-base lg:text-lg text-white mb-6">
+      Yadav Association of Canada (YAOC) is a Toronto-based non-profit
+      supporting the Yadav community in Canada. Established 8 years ago, YAOC
+      helps new immigrants through networking and hosts cultural events like
+      Holi and Diwali to foster community connections.
     </p>
     <button
-      class="bg-[#e53b3b] px-6 py-3 rounded-full font-semibold hover:bg-red-600 transition"
+      class="bg-[#e53b3b] px-12 lg:px-20 py-3 lg:py-4 rounded-full font-semibold hover:bg-white hover:text-[#e53b3b] transition"
+      (click)="modalClick()"
     >
       Join Now
     </button>
   </div>
-  <div class="mt-10 md:mt-0">
-    <img src="assets/hero-bike.png" alt="Motorbike" class="max-w-md w-full" />
-  </div>
-</section>
 
-<!-- Stats Section -->
-<section
-  class="bg-white text-gray-800 py-16 px-6 md:px-20 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center"
->
-  <div>
-    <h2 class="text-4xl font-bold">10K+</h2>
-    <p class="text-lg">Members</p>
-  </div>
-  <div>
-    <h2 class="text-4xl font-bold">500+</h2>
-    <p class="text-lg">Rides Organized</p>
-  </div>
-  <div>
-    <h2 class="text-4xl font-bold">120+</h2>
-    <p class="text-lg">Partners</p>
+  <!-- Image -->
+  <div
+    class="mt-10 lg:mt-0 flex lg:ml-6 lg:justify-end relative z-10 w-full lg:w-auto"
+  >
+    <img
+      src="../../../assets/hero-image.jpeg"
+      alt="Motorbike"
+      class="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded-2xl"
+    />
   </div>
 </section>
 
 <!-- About Section -->
 <section
   id="about"
-  class="flex flex-col md:flex-row items-center gap-10 px-6 md:px-20 py-20 bg-[#a1bfcf]"
+  class="flex flex-col md:flex-row items-center gap-10 px-6 md:px-20 py-20 bg-white"
 >
   <img
-    src="assets/about-image.png"
-    class="w-full md:w-1/2 rounded-xl shadow-lg"
+    src="../../../assets/mission.jpg"
+    class="w-full md:w-1/2 rounded-xl shadow-lg border-2 border-[#0E002D]"
     alt="Community Ride"
   />
-  <div class="max-w-lg space-y-4">
-    <h2 class="text-3xl font-bold">More Than Just A Ride</h2>
+  <div class="max-w-lg">
+    <h2 class="text-3xl font-bold mb-3">Our Mission</h2>
     <p>
-      Motoride is built around the idea that community and adventure go hand in
-      hand. We organize local and cross-country rides, workshops, and social
-      events to connect riders across all skill levels.
+      Established in 2009 and based in Toronto, Ontario, the Yadav Association
+      of Canada (YAOC) is a not-for-profit organization dedicated to serving the
+      Yadav community across Canada. Our mission is to support and connect
+      community members—especially new immigrants—through a welcoming network
+      that fosters friendship, cultural celebration, and mutual support.
+    </p>
+    <p>
+      YAOC regularly organizes social events, cultural festivals like Holi and
+      Diwali, and networking gatherings to help members and their families stay
+      connected and engaged. The association serves as a vibrant platform for
+      building community bonds, sharing experiences, and celebrating our rich
+      heritage together.
     </p>
     <button
-      class="bg-[#0E002D] text-white px-5 py-3 rounded-full hover:bg-[#1a0a3d] transition"
+      class="bg-[#0E002D] cursor-pointer text-white px-5 py-3 mt-4 rounded-full hover:bg-[#e53b3b] transition"
+      routerLink="/about"
     >
-      Learn More
+      Meet the Executives
     </button>
-  </div>
-</section>
-
-<!-- Features Section -->
-<section class="px-6 md:px-20 py-20 bg-white">
-  <h2 class="text-3xl font-bold text-center mb-12">Why Join Motoride?</h2>
-  <div class="grid gap-8 md:grid-cols-3 text-center">
-    <div class="p-6 border rounded-xl">
-      <img
-        src="assets/icon-network.png"
-        alt="Connect"
-        class="mx-auto mb-4 w-12"
-      />
-      <h3 class="font-semibold text-xl mb-2">Connect</h3>
-      <p>
-        Meet riders in your city and beyond, share experiences, and make
-        lifelong connections.
-      </p>
-    </div>
-    <div class="p-6 border rounded-xl">
-      <img
-        src="assets/icon-events.png"
-        alt="Events"
-        class="mx-auto mb-4 w-12"
-      />
-      <h3 class="font-semibold text-xl mb-2">Events</h3>
-      <p>
-        Take part in rides, meetups, and workshops organized by the community
-        for the community.
-      </p>
-    </div>
-    <div class="p-6 border rounded-xl">
-      <img
-        src="assets/icon-rewards.png"
-        alt="Rewards"
-        class="mx-auto mb-4 w-12"
-      />
-      <h3 class="font-semibold text-xl mb-2">Rewards</h3>
-      <p>
-        Earn rewards, discounts, and recognition for your contributions and
-        participation.
-      </p>
-    </div>
   </div>
 </section>
 
 <!-- Events Section -->
 <section id="events" class="bg-[#0E002D] text-white py-20 px-6 md:px-20">
-  <p class="text-[#f59e0b] text-lg font-medium mb-2">Our Event</p>
+  <p class="text-[#e53b3b] text-lg font-medium mb-2">Our Story in Pictures</p>
   <h2 class="text-3xl md:text-4xl font-semibold mb-12">
-    We have some new events that are very exciting and crowded
+    A visual journey through the events, faces, and festivals defining YAOC
+    experience
   </h2>
   <div class="grid gap-6 md:grid-cols-3">
-    <div class="bg-gradient-to-b from-[#e53b3b] to-[#4e1f24] p-6 rounded-xl">
-      <h3 class="text-xl font-semibold mb-2">Exploration Malang in 4 days.</h3>
-      <p class="text-gray-300 text-sm">
-        Malang City is a city located in East Java, Indonesia, known for its
-        scenic routes and strong rider community.
-      </p>
+    <div
+      *ngFor="let data of imgData"
+      class="flex flex-col gap-3 items-center justify-center p-3 rounded-xl bg-[radial-gradient(circle,_#0E002D_20%,_#e53b3b_100%)]"
+    >
+      <h3 class="text-xl font-semibold">{{data.title}}</h3>
+      <img
+        [src]="data.images[0]"
+        alt="Event Image"
+        class="max-w-md w-full rounded-md mb-2"
+      />
+      <button
+        class="bg-white text-[#0E002D] px-6 py-1 mb-4 rounded-full font-semibold hover:bg-[#0E002D] hover:text-white transition"
+        [routerLink]="['/event-gallery']"
+        [queryParams]="{ event: data.title}"
+      >
+        View More
+      </button>
     </div>
-    <div class="bg-gradient-to-b from-[#e53b3b] to-[#4e1f24] p-6 rounded-xl">
-      <h3 class="text-xl font-semibold mb-2">Bali Coastal Ride</h3>
-      <p class="text-gray-300 text-sm">
-        Experience breathtaking coastal roads and ride with over 300 bikers from
-        Denpasar to Amed.
-      </p>
-    </div>
-    <div class="bg-gradient-to-b from-[#e53b3b] to-[#4e1f24] p-6 rounded-xl">
-      <h3 class="text-xl font-semibold mb-2">Jakarta Night Cruise</h3>
-      <p class="text-gray-300 text-sm">
-        Night rides through the buzzing capital city – safe, thrilling, and
-        unforgettable.
-      </p>
-    </div>
+  </div>
+  <div class="flex justify-center mt-6">
+    <button
+      class="bg-[#e53b3b] text-white px-28 py-4 rounded-full font-semibold hover:bg-white hover:text-[#e53b3b] transition"
+      (click)="modalClick()"
+    >
+      Join Now
+    </button>
   </div>
 </section>
 
-<!-- Community CTA Section -->
-<section id="community" class="bg-white py-20 px-6 md:px-20 text-center">
-  <p class="text-[#f59e0b] text-lg font-medium mb-2">Community</p>
-  <h2 class="text-3xl md:text-4xl font-semibold max-w-3xl mx-auto mb-8">
-    Join the Community and ride with us to explore the beauty of Indonesia with
-    Motoride
-  </h2>
-  <!-- Photo Collage -->
-  <div class="grid grid-cols-4 gap-2 mb-8">
-    <img
-      src="assets/collage1.jpg"
-      class="col-span-2 row-span-2 object-cover rounded-xl"
-    />
-    <img
-      src="assets/collage2.jpg"
-      class="col-span-1 row-span-1 object-cover rounded-xl"
-    />
-    <img
-      src="assets/collage3.jpg"
-      class="col-span-1 row-span-1 object-cover rounded-xl"
-    />
-    <img
-      src="assets/collage4.jpg"
-      class="col-span-2 row-span-1 object-cover rounded-xl"
-    />
-    <img
-      src="assets/collage5.jpg"
-      class="col-span-1 row-span-2 object-cover rounded-xl"
-    />
-    <img
-      src="assets/collage6.jpg"
-      class="col-span-1 row-span-1 object-cover rounded-xl"
-    />
-    <img
-      src="assets/collage7.jpg"
-      class="col-span-1 row-span-1 object-cover rounded-xl"
-    />
-  </div>
-  <button
-    class="bg-gradient-to-r from-orange-400 to-yellow-400 text-black px-6 py-3 rounded-full font-semibold hover:from-orange-500 hover:to-yellow-500 transition"
-  >
-    Join Community
-  </button>
-</section>
+<!-- Upcoming Events Section -->
+<app-upcoming-events></app-upcoming-events>
 
 <!-- Footer -->
 <footer class="bg-[#0E002D] text-white py-10 text-center">
-  <p>&copy; 2025 Motoride Community. All rights reserved.</p>
+  <p>&copy; 2025 YAOC Community. All rights reserved.</p>
 </footer>
+
+<app-modal-membership
+  [showModal]="showModal"
+  (modalStatus)="modalStatus($event)"
+></app-modal-membership>

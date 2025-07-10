@@ -1,0 +1,50 @@
+<!-- Modal Overlay -->
+<div
+  *ngIf="showModal"
+  class="fixed inset-0 backdrop-blur-md bg-black/10 flex items-center justify-center z-50 animate-fade-in"
+  (click)="closeModal()"
+>
+  <!-- Modal Box -->
+  <div
+    class="relative w-[90%] max-w-md bg-white/10 text-white rounded-2xl p-8 shadow-2xl border border-white/20 backdrop-blur-lg animate-slide-up"
+    (click)="$event.stopPropagation()"
+  >
+    <!-- Fancy Gradient Border Glow -->
+    <div
+      class="absolute inset-0 rounded-2xl p-[2px] bg-gradient-to-br from-[#e53b3b] via-[#ff5f6d] to-[#0E002D] blur-sm z-[-1]"
+    ></div>
+
+    <h2 class="text-3xl font-bold mb-4 text-center tracking-wide">
+      Get in Touch
+    </h2>
+    <p class="mb-6 text-center text-white/80">
+      We'd love to hear from you! Reach out to join the community.
+    </p>
+
+    <div class="text-center space-y-4 text-base font-medium">
+      <a
+        href="mailto:yadavassociationofcanada@gmail.com"
+        class="flex items-center justify-center gap-2 hover:underline"
+      >
+        <img
+          src="assets/mail.png"
+          class="w-5 h-5"
+        />{{`yadavassociationofcanada@gmail.com`}}
+      </a>
+      <a
+        href="tel:+16479551850"
+        class="flex items-center justify-center gap-2 font-semibold hover:underline"
+      >
+        <img src="assets/phone.png" class="w-5 h-5" /> +1-267-736-2212
+      </a>
+    </div>
+
+    <!-- Close button -->
+    <button
+      class="absolute top-4 right-4 text-white text-2xl font-bold hover:text-gray-300"
+      (click)="closeModal()"
+    >
+      &times;
+    </button>
+  </div>
+</div>

@@ -1,49 +1,105 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  ViewChild,
+  AfterViewInit,
+  OnInit,
+} from '@angular/core';
 import Swiper from 'swiper';
 import { Navigation } from 'swiper/modules';
+import { ModalMembership } from '../../components/modal-membership/modal-membership';
+import { imgData } from '../home/home';
+import { ActivatedRoute } from '@angular/router';
+import { UpcomingEvents } from '../../components/upcoming-events/upcoming-events';
+import { Navbar } from '../../components/navbar/navbar';
 
 Swiper.use([Navigation]);
 
 @Component({
   selector: 'app-event-gallery',
-  imports: [CommonModule],
   templateUrl: './event-gallery.html',
-  styleUrl: './event-gallery.css',
+  styleUrls: ['./event-gallery.css'],
+  imports: [CommonModule, ModalMembership, UpcomingEvents, Navbar],
   standalone: true,
 })
-export class EventGallery {
+export class EventGallery implements OnInit {
   @ViewChild('swiperContainer', { static: false }) swiperContainer!: ElementRef;
 
-  allPhotos: string[] = [
-    'assets/gallery1.jpg',
-    'assets/gallery2.jpg',
-    'assets/gallery3.jpg',
-    'assets/gallery4.jpg',
-    'assets/gallery5.jpg',
-    'assets/gallery6.jpg',
-    'assets/gallery7.jpg',
-    'assets/gallery8.jpg',
-    'assets/gallery9.jpg',
-  ];
-
-  featuredImages: string[] = [
-    'assets/feature1.jpg',
-    'assets/feature2.jpg',
-    'assets/feature3.jpg',
-  ];
-
+  imgData = imgData;
+  selectedTab: string = '';
+  selectedImages: string[] = [];
+  modalOpen = false;
+  showModal = false;
   page: number = 1;
-  imagesPerPage = 6;
-  modalImage: string | null = null;
+  imagesPerPage: number = 9;
 
-  get totalPages() {
-    return Math.ceil(this.allPhotos.length / this.imagesPerPage);
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit(): void {
+    this.route.queryParams.subscribe((params) => {
+      const eventParam = (params['event'] || '').toLowerCase().trim();
+      const found = this.imgData.find(
+        (tab) => tab.title.toLowerCase().trim() === eventParam
+      );
+
+      if (found) {
+        this.selectedTab = found.title;
+        this.selectedImages = [...found.images];
+      } else {
+        // Default to first tab if not found
+        const first = this.imgData[0];
+        this.selectedTab = first.title;
+        this.selectedImages = [...first.images];
+      }
+    });
   }
 
-  get currentPhotos() {
+  selectTab(title: string): void {
+    this.page = 1;
+    this.selectedTab = title;
+    this.selectedImages =
+      this.imgData.find((tab) => tab.title === title)?.images || [];
+  }
+
+  openFullscreen(index: number): void {
+    this.modalOpen = true;
+
+    // Wait for DOM to render
+    setTimeout(() => {
+      new Swiper(this.swiperContainer.nativeElement, {
+        modules: [Navigation],
+        slidesPerView: 1,
+        loop: true,
+        spaceBetween: 10,
+        initialSlide: index,
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+      });
+    });
+  }
+
+  closeFullscreen(): void {
+    this.modalOpen = false;
+  }
+
+  modalClick() {
+    this.showModal = true;
+  }
+
+  modalStatus(status: boolean) {
+    this.showModal = status;
+  }
+
+  get paginatedImages() {
     const start = (this.page - 1) * this.imagesPerPage;
-    return this.allPhotos.slice(start, start + this.imagesPerPage);
+    return this.selectedImages.slice(start, start + this.imagesPerPage);
+  }
+
+  get totalPages() {
+    return Math.ceil(this.selectedImages.length / this.imagesPerPage);
   }
 
   nextPage() {
@@ -52,26 +108,5 @@ export class EventGallery {
 
   prevPage() {
     if (this.page > 1) this.page--;
-  }
-
-  openModal(img: string) {
-    this.modalImage = img;
-  }
-
-  closeModal() {
-    this.modalImage = null;
-  }
-
-  ngAfterViewInit(): void {
-    new Swiper('.mySwiper', {
-      modules: [Navigation],
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      loop: true,
-      slidesPerView: 1,
-      spaceBetween: 10,
-    });
   }
 }

@@ -1,0 +1,62 @@
+/* Remove Swiper's default arrow icons */
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  content: "";
+}
+
+/* Shared button base style */
+.custom-swiper-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 9999px; /* fully rounded */
+  background: rgba(0, 0, 0, 0.4);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
+}
+
+@media (max-width: 768px) {
+  .custom-swiper-btn {
+    display: none;
+  }
+}
+
+.custom-swiper-btn:hover {
+  background: #e53b3b;
+  border-color: white;
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(229, 59, 59, 0.6);
+}
+
+/* Add custom arrow icon with pure CSS */
+.swiper-button-prev::before,
+.swiper-button-next::before {
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+}
+
+.swiper-button-prev::before {
+  transform: rotate(-135deg);
+  margin-left: 5px;
+}
+
+.swiper-button-next::before {
+  transform: rotate(45deg);
+  margin-left: -5px;
+}
+
+.hide-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
