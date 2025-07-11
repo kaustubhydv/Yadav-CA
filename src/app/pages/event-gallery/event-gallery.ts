@@ -34,6 +34,8 @@ export class EventGallery implements OnInit {
   page: number = 1;
   imagesPerPage: number = 9;
 
+  swiperInstance: any;
+
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
@@ -65,9 +67,8 @@ export class EventGallery implements OnInit {
   openFullscreen(index: number): void {
     this.modalOpen = true;
 
-    // Wait for DOM to render
     setTimeout(() => {
-      new Swiper(this.swiperContainer.nativeElement, {
+      this.swiperInstance = new Swiper(this.swiperContainer.nativeElement, {
         modules: [Navigation],
         slidesPerView: 1,
         loop: true,
@@ -78,12 +79,31 @@ export class EventGallery implements OnInit {
           prevEl: '.swiper-button-prev',
         },
       });
+
+      document.addEventListener('keydown', this.handleKeyPress);
     });
   }
 
   closeFullscreen(): void {
     this.modalOpen = false;
+
+    if (this.swiperInstance) {
+      this.swiperInstance.destroy(true, true);
+      this.swiperInstance = null;
+    }
+
+    document.removeEventListener('keydown', this.handleKeyPress);
   }
+
+  handleKeyPress = (event: KeyboardEvent) => {
+    if (!this.swiperInstance) return;
+
+    if (event.key === 'ArrowRight') {
+      this.swiperInstance.slideNext();
+    } else if (event.key === 'ArrowLeft') {
+      this.swiperInstance.slidePrev();
+    }
+  };
 
   modalClick() {
     this.showModal = true;
@@ -103,10 +123,23 @@ export class EventGallery implements OnInit {
   }
 
   nextPage() {
-    if (this.page < this.totalPages) this.page++;
+    if (this.page < this.totalPages) {
+      this.page++;
+      this.scrollToGallery();
+    }
   }
 
   prevPage() {
-    if (this.page > 1) this.page--;
+    if (this.page > 1) {
+      this.page--;
+      this.scrollToGallery();
+    }
+  }
+
+  scrollToGallery() {
+    const galleryElement = document.getElementById('event-gallery');
+    if (galleryElement) {
+      galleryElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
 }

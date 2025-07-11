@@ -3,7 +3,7 @@
   <ng-container *ngIf="!isLoading; else loading">
     <div *ngIf="events.length > 0; else empty">
       <!--  Render Event Cards -->
-      <div class="grid gap-6 md:grid-cols-3">
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         <div
           *ngFor="let event of events"
           class="group relative bg-[#0E002D] text-white p-6 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300"
@@ -17,7 +17,8 @@
             <img
               [src]="event?.ImageURL"
               [alt]="event?.Title"
-              class="rounded-xl aspect-square max-w-80 object-cover transition"
+              class="rounded-xl aspect-square object-cover transition cursor-pointer"
+              (click)="openImageModal(event?.ImageURL)"
             />
             <h3 class="text-xl font-bold tracking-wide">{{ event?.Title }}</h3>
             <p class="text-white/80 text-sm">{{ event?.Description }}</p>
@@ -50,4 +51,23 @@
       </div>
     </div>
   </ng-template>
+
+  <!-- ✅ Fullscreen Modal -->
+  <div
+    class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center"
+    *ngIf="modalOpen"
+    (click)="closeImageModal()"
+  >
+    <img
+      [src]="modalImageUrl"
+      class="max-h-[90vh] max-w-[90vw] rounded-xl object-contain"
+      (click)="$event.stopPropagation()"
+    />
+    <button
+      class="absolute top-4 right-4 text-white text-3xl font-bold hover:text-[#e53b3b]"
+      (click)="closeImageModal()"
+    >
+      &times;
+    </button>
+  </div>
 </section>

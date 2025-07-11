@@ -12,6 +12,9 @@ import { ChangeDetectorRef } from '@angular/core';
 export class UpcomingEvents {
   events: any[] = [];
   isLoading: boolean = true;
+  modalOpen = false;
+  modalImageUrl: string | null = null;
+
   constructor(
     private upcomingEventsService: UpcomingEventsService,
     private cdr: ChangeDetectorRef
@@ -19,11 +22,19 @@ export class UpcomingEvents {
 
   ngOnInit() {
     this.upcomingEventsService.getEvents().subscribe((data) => {
-      console.log(data);
-
       this.events = data;
       this.isLoading = false;
       this.cdr.detectChanges();
     });
+  }
+
+  openImageModal(url: string) {
+    this.modalImageUrl = url;
+    this.modalOpen = true;
+  }
+
+  closeImageModal() {
+    this.modalOpen = false;
+    this.modalImageUrl = null;
   }
 }
